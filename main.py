@@ -44,3 +44,10 @@ def get_images(image_dir,transform = None,batch_size=1,shuffle=True,pin_memory=T
     train_batch = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, pin_memory=pin_memory)
     test_batch = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle, pin_memory=pin_memory)
     return train_batch,test_batch
+
+t1 = A.Compose([
+    A.Resize(160,240),
+    A.augmentations.transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5)),
+    ToTensorV2()
+])
+train_batch,test_batch = get_images(data_dir,transform =t1,batch_size=8)
