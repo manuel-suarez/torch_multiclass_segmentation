@@ -66,6 +66,7 @@ for img,mask in train_batch:
     ax[1][1].imshow(mask2)
     ax[2][0].imshow(img3)
     ax[2][1].imshow(mask3)
+    plt.savefig("figure1.png")
     break
 
 class encoding_block(nn.Module):
@@ -226,4 +227,5 @@ for x,y in test_batch:
     ax[2][0].imshow(img3)
     ax[2][1].imshow(preds3)
     ax[2][2].imshow(mask3)
+    plt.savefig("figure2.png")
     break
