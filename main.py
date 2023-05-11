@@ -143,3 +143,22 @@ num_epochs = 10
 loss_fn = nn.CrossEntropyLoss()
 optimizer = Adam(model.parameters(), lr=LEARNING_RATE)
 scaler = torch.cuda.amp.GradScaler()
+
+for epoch in range(num_epochs):
+    loop = tqdm(enumerate(train_batch),total=len(train_batch))
+    for batch_idx, (data, targets) in loop:
+        data = data.to(DEVICE)
+        targets = targets.to(DEVICE)
+        targets = targets.type(torch.long)
+        # forward
+        with torch.cuda.amp.autocast():
+            predictions = model(data)
+            loss = loss_fn(predictions, targets)
+        # backward
+        optimizer.zero_grad()
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
+
+        # update tqdm loop
+        loop.set_postfix(loss=loss.item())
