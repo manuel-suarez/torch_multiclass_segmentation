@@ -35,7 +35,7 @@ class LyftUdacity(Dataset):
             mask = torch.max(mask,dim=2)[0]
         return img,mask
 
-data_dir = ['../input/lyft-udacity-challenge/data'+i+'/data'+i for i in ['A','B','C','D','E']]
+data_dir = ['/home/est_posgrado_manuel.suarez/data/lyft-udacity-challenge/data'+i+'/data'+i for i in ['A','B','C','D','E']]
 def get_images(image_dir,transform = None,batch_size=1,shuffle=True,pin_memory=True):
     data = LyftUdacity(image_dir,transform = t1)
     train_size = int(0.8 * data.__len__())
