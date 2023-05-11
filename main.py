@@ -133,3 +133,6 @@ class unet_model(nn.Module):
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 model = unet_model().to(DEVICE)
+
+from torchsummary import summary
+summary(model, (3, 256, 256))
