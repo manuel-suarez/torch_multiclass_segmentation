@@ -136,3 +136,10 @@ model = unet_model().to(DEVICE)
 
 from torchsummary import summary
 summary(model, (3, 256, 256))
+
+LEARNING_RATE = 1e-4
+num_epochs = 10
+
+loss_fn = nn.CrossEntropyLoss()
+optimizer = Adam(model.parameters(), lr=LEARNING_RATE)
+scaler = torch.cuda.amp.GradScaler()
