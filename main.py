@@ -51,3 +51,19 @@ t1 = A.Compose([
     ToTensorV2()
 ])
 train_batch,test_batch = get_images(data_dir,transform =t1,batch_size=8)
+
+for img,mask in train_batch:
+    img1 = np.transpose(img[0,:,:,:],(1,2,0))
+    mask1 = np.array(mask[0,:,:])
+    img2 = np.transpose(img[1,:,:,:],(1,2,0))
+    mask2 = np.array(mask[1,:,:])
+    img3 = np.transpose(img[2,:,:,:],(1,2,0))
+    mask3 = np.array(mask[2,:,:])
+    fig , ax =  plt.subplots(3, 2, figsize=(18, 18))
+    ax[0][0].imshow(img1)
+    ax[0][1].imshow(mask1)
+    ax[1][0].imshow(img2)
+    ax[1][1].imshow(mask2)
+    ax[2][0].imshow(img3)
+    ax[2][1].imshow(mask3)
+    break
